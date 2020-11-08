@@ -17,7 +17,7 @@ class ParserTest {
     inner class EnumTest {
         @Test
         fun `test enums associate the correct values`() {
-            val definition = Parser().parse("src/main/thrift/enum.thrift")
+            val definition = Parser().parse("src/main/thrift/enum/example.thrift")
 
             val expected = listOf(
                 Enum(
@@ -42,28 +42,28 @@ class ParserTest {
     inner class NamespaceTest {
         @Test
         fun `test parser prefers kotlin namespace`() {
-            val definition = Parser().parse("src/main/thrift/namespace_kotlin.thrift")
+            val definition = Parser().parse("src/main/thrift/namespace/kotlin.thrift")
 
             assertEquals("net.prettyrandom.thrift.test.kotlin", definition.namespace)
         }
 
         @Test
         fun `test parser falls back to java from kotlin namespace`() {
-            val definition = Parser().parse("src/main/thrift/namespace_java.thrift")
+            val definition = Parser().parse("src/main/thrift/namespace/java.thrift")
 
             assertEquals("net.prettyrandom.thrift.test.java", definition.namespace)
         }
 
         @Test
         fun `test parser falls back to generic from java namespace`() {
-            val definition = Parser().parse("src/main/thrift/namespace_generic.thrift")
+            val definition = Parser().parse("src/main/thrift/namespace/generic.thrift")
 
             assertEquals("net.prettyrandom.thrift.test.generic", definition.namespace)
         }
 
         @Test
         fun `test parser handles missing namespace`() {
-            val definition = Parser().parse("src/main/thrift/namespace_missing.thrift")
+            val definition = Parser().parse("src/main/thrift/namespace/missing.thrift")
 
             assertNull(definition.namespace)
         }
@@ -119,7 +119,7 @@ class ParserTest {
     inner class StructTest {
         @Test
         fun `test structs associate the correct values`() {
-            val definition = Parser().parse("src/main/thrift/struct.thrift")
+            val definition = Parser().parse("src/main/thrift/struct/example.thrift")
 
             val expected = listOf(
                 Struct(
