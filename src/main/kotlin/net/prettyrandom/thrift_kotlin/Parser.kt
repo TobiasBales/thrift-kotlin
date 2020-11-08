@@ -3,25 +3,18 @@ package net.prettyrandom.thrift_kotlin
 import net.prettyrandom.thrift_kotlin.domain.Definition
 import net.prettyrandom.thrift_kotlin.generated.parser.ThriftLexer
 import net.prettyrandom.thrift_kotlin.generated.parser.ThriftParser
-import net.prettyrandom.thrift_kotlin.listeners.EnumListener
-import net.prettyrandom.thrift_kotlin.listeners.NamespaceListener
+import net.prettyrandom.thrift_kotlin.visitors.DefinitionVisitor
 import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
 import java.io.File
 
 class Parser {
-    private val namespaceListener = NamespaceListener()
-    private val enumListener = EnumListener()
-
     fun parse(filename: String): Definition {
         val parser = buildParser(readDefinition(filename))
 
-        parser.document()
+        val visitor = DefinitionVisitor()
 
-        return Definition(
-            namespace = namespaceListener.getNamespace()?.namespace,
-            enums = enumListener.getEnums()
-        )
+        return visitor.visit(parser.document())
     }
 
     private fun readDefinition(filename: String): String {
@@ -31,11 +24,6 @@ class Parser {
     private fun buildParser(definition: String): ThriftParser {
         val lexer = ThriftLexer(CharStreams.fromString(definition))
         val tokens = CommonTokenStream(lexer)
-        val parser = ThriftParser(tokens)
-
-        parser.addParseListener(namespaceListener)
-        parser.addParseListener(enumListener)
-
-        return parser
+        return ThriftParser(tokens)
     }
 }
