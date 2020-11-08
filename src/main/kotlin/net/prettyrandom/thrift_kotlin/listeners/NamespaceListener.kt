@@ -10,8 +10,8 @@ import java.util.*
 class NamespaceListener : ThriftBaseListener() {
     private var namespace: Namespace? = null
 
-    fun getNamespace(): Namespace {
-        return namespace ?: throw MissingNamespaceException()
+    fun getNamespace(): Namespace? {
+        return namespace
     }
 
     override fun exitNamespace(ctx: ThriftParser.NamespaceContext) {

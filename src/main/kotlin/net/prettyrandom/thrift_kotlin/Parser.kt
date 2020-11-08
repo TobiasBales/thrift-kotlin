@@ -3,6 +3,7 @@ package net.prettyrandom.thrift_kotlin
 import ThriftLexer
 import ThriftParser
 import net.prettyrandom.thrift_kotlin.domain.Definition
+import net.prettyrandom.thrift_kotlin.listeners.EnumListener
 import net.prettyrandom.thrift_kotlin.listeners.NamespaceListener
 import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
@@ -10,13 +11,14 @@ import java.io.File
 
 class Parser {
     private val namespaceListener = NamespaceListener()
+    private val enumListener = EnumListener()
 
     fun parse(filename: String): Definition {
         val parser = buildParser(readDefinition(filename))
 
         parser.document()
 
-        return Definition(namespace = namespaceListener.getNamespace())
+        return Definition(namespace = namespaceListener.getNamespace()?.namespace)
     }
 
     private fun readDefinition(filename: String): String {
