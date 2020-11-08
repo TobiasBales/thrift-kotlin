@@ -13,6 +13,31 @@ import org.junit.jupiter.api.TestInstance.Lifecycle
 @DisplayName("Parser")
 class ParserTest {
     @Nested
+    @DisplayName("Enum")
+    inner class EnumTest {
+        @Test
+        fun `test enums associate the correct values`() {
+            val definition = Parser().parse("src/main/thrift/enum.thrift")
+
+            val expected = listOf(
+                Enum(
+                    name = "STATUS",
+                    values = listOf(
+                        EnumValue(name = "NO_VALUE", value = 0),
+                        EnumValue(name = "FOLLOWING_NO_VALUE", value = 1),
+                        EnumValue(name = "NOT_FOUND", value = 404),
+                        EnumValue(name = "FOLLOWING_INTEGER", value = 405),
+                        EnumValue(name = "UNkNOWN", value = 10),
+                        EnumValue(name = "FOLLOWING_HEX_INTEGER", value = 11)
+                    )
+                )
+            )
+
+            assertEquals(expected, definition.enums)
+        }
+    }
+
+    @Nested
     @DisplayName("Namespace")
     inner class NamespaceTest {
         @Test
@@ -43,32 +68,6 @@ class ParserTest {
             assertNull(definition.namespace)
         }
     }
-
-    @Nested
-    @DisplayName("Enum")
-    inner class EnumTest {
-        @Test
-        fun `test enums associate the correct values`() {
-            val definition = Parser().parse("src/main/thrift/enum.thrift")
-
-            val expected = listOf(
-                Enum(
-                    name = "STATUS",
-                    values = listOf(
-                        EnumValue(name = "NO_VALUE", value = 0),
-                        EnumValue(name = "FOLLOWING_NO_VALUE", value = 1),
-                        EnumValue(name = "NOT_FOUND", value = 404),
-                        EnumValue(name = "FOLLOWING_INTEGER", value = 405),
-                        EnumValue(name = "UNkNOWN", value = 10),
-                        EnumValue(name = "FOLLOWING_HEX_INTEGER", value = 11)
-                    )
-                )
-            )
-
-            assertEquals(expected, definition.enums)
-        }
-    }
-
 
     @Nested
     @DisplayName("Service")
