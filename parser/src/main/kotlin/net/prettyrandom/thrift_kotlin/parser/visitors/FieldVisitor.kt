@@ -1,7 +1,7 @@
 package net.prettyrandom.thrift_kotlin.parser.visitors
 
-import net.prettyrandom.thrift_kotlin.parser.domain.Requiredness
 import net.prettyrandom.thrift_kotlin.parser.domain.Field
+import net.prettyrandom.thrift_kotlin.parser.extensions.getRequiredness
 import net.prettyrandom.thrift_kotlin.parser.generated.parser.ThriftBaseVisitor
 import net.prettyrandom.thrift_kotlin.parser.generated.parser.ThriftParser
 
@@ -14,14 +14,5 @@ class FieldVisitor : ThriftBaseVisitor<Field>() {
             type = ctx.field_type().text,
             defaultValue = ctx.const_value()?.text
         )
-    }
-}
-
-private fun ThriftParser.FieldContext.getRequiredness(): Requiredness {
-    return when (field_req()?.text) {
-        null -> return Requiredness.DEFAULT
-        "required" -> Requiredness.REQUIRED
-        "optional" -> Requiredness.OPTIONAL
-        else -> throw Exception("Got invalid value for requiredness ${field_req().text}")
     }
 }
