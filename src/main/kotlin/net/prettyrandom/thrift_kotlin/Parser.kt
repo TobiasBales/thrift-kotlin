@@ -1,8 +1,8 @@
 package net.prettyrandom.thrift_kotlin
 
-import ThriftLexer
-import ThriftParser
 import net.prettyrandom.thrift_kotlin.domain.Definition
+import net.prettyrandom.thrift_kotlin.generated.parser.ThriftLexer
+import net.prettyrandom.thrift_kotlin.generated.parser.ThriftParser
 import net.prettyrandom.thrift_kotlin.listeners.EnumListener
 import net.prettyrandom.thrift_kotlin.listeners.NamespaceListener
 import org.antlr.v4.runtime.CharStreams

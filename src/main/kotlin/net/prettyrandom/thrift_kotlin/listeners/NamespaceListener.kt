@@ -1,11 +1,10 @@
 package net.prettyrandom.thrift_kotlin.listeners
 
-import ThriftBaseListener
-import ThriftParser
 import net.prettyrandom.thrift_kotlin.domain.Namespace
 import net.prettyrandom.thrift_kotlin.domain.NamespaceComparator
-import net.prettyrandom.thrift_kotlin.exceptions.MissingNamespaceException
-import java.util.*
+import net.prettyrandom.thrift_kotlin.generated.parser.ThriftBaseListener
+import net.prettyrandom.thrift_kotlin.generated.parser.ThriftParser
+import java.util.Objects
 
 class NamespaceListener : ThriftBaseListener() {
     private var namespace: Namespace? = null

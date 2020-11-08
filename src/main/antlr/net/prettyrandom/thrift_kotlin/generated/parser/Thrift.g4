@@ -1,6 +1,10 @@
 // taken from https://github.com/antlr/grammars-v4/blob/master/thrift/Thrift.g4
 grammar Thrift;
 
+@header {
+    package net.prettyrandom.thrift_kotlin.generated.parser;
+}
+
 document
     : header* definition* EOF
     ;

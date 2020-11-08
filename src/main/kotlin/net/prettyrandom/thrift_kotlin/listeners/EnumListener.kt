@@ -1,9 +1,9 @@
 package net.prettyrandom.thrift_kotlin.listeners
 
-import ThriftBaseListener
-import ThriftParser
 import net.prettyrandom.thrift_kotlin.domain.Enum
 import net.prettyrandom.thrift_kotlin.domain.EnumValue
+import net.prettyrandom.thrift_kotlin.generated.parser.ThriftBaseListener
+import net.prettyrandom.thrift_kotlin.generated.parser.ThriftParser
 
 class EnumListener : ThriftBaseListener() {
     private val enums = mutableListOf<Enum>()
