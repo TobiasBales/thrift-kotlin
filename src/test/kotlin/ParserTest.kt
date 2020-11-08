@@ -1,7 +1,6 @@
 package net.prettyrandom.thrift_kotlin.domain
 
 import net.prettyrandom.thrift_kotlin.Parser
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.DisplayName
@@ -67,6 +66,28 @@ class ParserTest {
             )
 
             assertEquals(expected, definition.enums)
+        }
+    }
+
+    @Nested
+    @DisplayName("Struct")
+    inner class StructTest {
+        @Test
+        fun `test structs associate the correct values`() {
+            val definition = Parser().parse("src/main/thrift/struct.thrift")
+
+            val expected = listOf(
+                Struct(
+                    name = "Response",
+                    fields = listOf(
+                        StructField(identifier = 1, requiredness = Requiredness.DEFAULT, type = "string", name = "one", defaultValue = null),
+                        StructField(identifier = 2, requiredness = Requiredness.REQUIRED, type = "i32", name = "two", defaultValue = null),
+                        StructField(identifier = 3, requiredness = Requiredness.OPTIONAL, type = "i64", name = "three", defaultValue = "123")
+                    )
+                )
+            )
+
+            assertEquals(expected, definition.structs)
         }
     }
 }

@@ -13,7 +13,8 @@ class DefinitionVisitor : ThriftBaseVisitor<Definition>() {
 
         return Definition(
             namespace = namespace?.namespace,
-            enums = ctx.definition().mapNotNull { it.accept(enumVisitor) }
+            enums = ctx.definition().mapNotNull { it.accept(enumVisitor) },
+            structs = ctx.definition().mapNotNull { it.accept(StructVisitor()) }
         )
     }
 }
