@@ -3,6 +3,7 @@ package net.prettyrandom.thrift_kotlin.domain
 import net.prettyrandom.thrift_kotlin.Parser
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -23,24 +24,24 @@ class ParserTest {
         }
 
         @Test
-        fun `test parser falls back to java namespace`() {
+        fun `test parser falls back to java from kotlin namespace`() {
             val definition = Parser().parse("src/main/thrift/namespace_java.thrift")
 
             assertEquals("net.prettyrandom.thrift.test.java", definition.namespace)
         }
 
         @Test
-        fun `test parser falls back to generic namespace`() {
+        fun `test parser falls back to generic from java namespace`() {
             val definition = Parser().parse("src/main/thrift/namespace_generic.thrift")
 
             assertEquals("net.prettyrandom.thrift.test.generic", definition.namespace)
         }
 
         @Test
-        fun `test parser fails for missing namespace`() {
+        fun `test parser handles missing namespace`() {
             val definition = Parser().parse("src/main/thrift/namespace_missing.thrift")
 
-            Assertions.assertNull(definition.namespace)
+            assertNull(definition.namespace)
         }
     }
 
