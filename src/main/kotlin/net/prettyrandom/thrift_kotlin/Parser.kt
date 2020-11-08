@@ -18,7 +18,10 @@ class Parser {
 
         parser.document()
 
-        return Definition(namespace = namespaceListener.getNamespace()?.namespace)
+        return Definition(
+            namespace = namespaceListener.getNamespace()?.namespace,
+            enums = enumListener.getEnums()
+        )
     }
 
     private fun readDefinition(filename: String): String {
@@ -31,6 +34,7 @@ class Parser {
         val parser = ThriftParser(tokens)
 
         parser.addParseListener(namespaceListener)
+        parser.addParseListener(enumListener)
 
         return parser
     }
