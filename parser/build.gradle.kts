@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm") version "1.4.10"
     antlr
 }
-group = "net.prettyrandom"
+group = "net.prettyrandom.kotlin_thrift"
 version = "0.1-SNAPSHOT"
 
 repositories {
