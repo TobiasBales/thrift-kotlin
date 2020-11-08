@@ -10,9 +10,10 @@ import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle
 
 @TestInstance(Lifecycle.PER_CLASS)
+@DisplayName("Parser")
 class ParserTest {
     @Nested
-    @DisplayName("Parser > Namespace")
+    @DisplayName("Namespace")
     inner class NamespaceTest {
         @Test
         fun `test parser prefers kotlin namespace`() {
@@ -44,7 +45,7 @@ class ParserTest {
     }
 
     @Nested
-    @DisplayName("Parser > Enum")
+    @DisplayName("Enum")
     inner class EnumTest {
         @Test
         fun `test enums associate the correct values`() {
