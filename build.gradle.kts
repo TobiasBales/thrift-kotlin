@@ -27,6 +27,10 @@ tasks.test {
     }
 }
 
+tasks.named("compileKotlin") {
+    dependsOn(tasks.named("generateGrammarSource"))
+}
+
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"
 }
