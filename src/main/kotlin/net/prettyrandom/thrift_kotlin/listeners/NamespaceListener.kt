@@ -24,7 +24,7 @@ class NamespaceListener : ThriftBaseListener() {
 
     private fun parseNamespace(ctx: ThriftParser.NamespaceContext): Namespace? {
         if (ctx.IDENTIFIER().size == 1) {
-            return Namespace.Any(ctx.IDENTIFIER(0).text)
+            return Namespace.Generic(ctx.IDENTIFIER(0).text)
         }
 
         val language = ctx.IDENTIFIER(0).text
