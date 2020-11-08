@@ -69,6 +69,52 @@ class ParserTest {
         }
     }
 
+
+    @Nested
+    @DisplayName("Service")
+    inner class ServiceTest {
+        @Test
+        fun `test services associate the correct values`() {
+            val definition = Parser().parse("src/main/thrift/service/example.thrift")
+
+            val expected = listOf(
+                Service(
+                    name = "TestService",
+                    functions = listOf(
+                        Function(
+                            name = "function",
+                            returnType = "Response",
+                            parameters = listOf(
+                                Field(
+                                    identifier = 1,
+                                    requiredness = Requiredness.DEFAULT,
+                                    name = "request",
+                                    type = "Request",
+                                    defaultValue = null
+                                )
+                            )
+                        ),
+                        Function(
+                            name = "voidFunction",
+                            returnType = "void",
+                            parameters = listOf(
+                                Field(
+                                    identifier = 1,
+                                    requiredness = Requiredness.REQUIRED,
+                                    name = "request",
+                                    type = "Request",
+                                    defaultValue = null
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+
+            assertEquals(expected, definition.services)
+        }
+    }
+
     @Nested
     @DisplayName("Struct")
     inner class StructTest {
@@ -80,9 +126,9 @@ class ParserTest {
                 Struct(
                     name = "Response",
                     fields = listOf(
-                        StructField(identifier = 1, requiredness = Requiredness.DEFAULT, type = "string", name = "one", defaultValue = null),
-                        StructField(identifier = 2, requiredness = Requiredness.REQUIRED, type = "i32", name = "two", defaultValue = null),
-                        StructField(identifier = 3, requiredness = Requiredness.OPTIONAL, type = "i64", name = "three", defaultValue = "123")
+                        Field(identifier = 1, requiredness = Requiredness.DEFAULT, type = "string", name = "one", defaultValue = null),
+                        Field(identifier = 2, requiredness = Requiredness.REQUIRED, type = "i32", name = "two", defaultValue = null),
+                        Field(identifier = 3, requiredness = Requiredness.OPTIONAL, type = "i64", name = "three", defaultValue = "123")
                     )
                 )
             )

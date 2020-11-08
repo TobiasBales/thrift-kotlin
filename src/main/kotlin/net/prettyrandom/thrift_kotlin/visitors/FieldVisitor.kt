@@ -1,13 +1,13 @@
 package net.prettyrandom.thrift_kotlin.visitors
 
 import net.prettyrandom.thrift_kotlin.domain.Requiredness
-import net.prettyrandom.thrift_kotlin.domain.StructField
+import net.prettyrandom.thrift_kotlin.domain.Field
 import net.prettyrandom.thrift_kotlin.generated.parser.ThriftBaseVisitor
 import net.prettyrandom.thrift_kotlin.generated.parser.ThriftParser
 
-class StructFieldVisitor : ThriftBaseVisitor<StructField>() {
-    override fun visitField(ctx: ThriftParser.FieldContext): StructField {
-        return StructField(
+class FieldVisitor : ThriftBaseVisitor<Field>() {
+    override fun visitField(ctx: ThriftParser.FieldContext): Field {
+        return Field(
             identifier = ctx.field_id().integer().text.toInt(),
             requiredness = ctx.getRequiredness(),
             name = ctx.IDENTIFIER().toString(),

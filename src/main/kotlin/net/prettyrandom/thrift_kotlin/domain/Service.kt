@@ -1,6 +1,6 @@
 package net.prettyrandom.thrift_kotlin.domain
 
-data class Struct(
+data class Service(
     val name: String,
-    val fields: List<Field>
+    val functions: List<Function>
 )

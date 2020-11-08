@@ -1,6 +1,6 @@
 package net.prettyrandom.thrift_kotlin.domain
 
-data class StructField(
+data class Field(
     val identifier: Int,
     val requiredness: Requiredness,
     val name: String,
