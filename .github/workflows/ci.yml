@@ -22,8 +22,8 @@ jobs:
       with:
         java-version: 11
 
-    - name: Run tests
-      run: ./gradlew test
+    - name: Run parser tests
+      run: ./gradlew parser:test
       env:
         GITHUB_API_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
 
