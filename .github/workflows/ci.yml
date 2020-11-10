@@ -38,4 +38,4 @@ jobs:
         uses: ScaCap/action-ktlint@master
         with:
           reporter: github-pr-review
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.API_TOKEN_GITHUB }}
