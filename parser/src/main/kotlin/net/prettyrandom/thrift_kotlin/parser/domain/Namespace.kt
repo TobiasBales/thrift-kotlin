@@ -1,6 +1,5 @@
 package net.prettyrandom.thrift_kotlin.parser.domain
 
-
 sealed class Namespace(val namespace: String) : Comparable<Namespace?> {
     class Kotlin(namespace: String) : Namespace(namespace)
     class Java(namespace: String) : Namespace(namespace)
@@ -14,4 +13,3 @@ sealed class Namespace(val namespace: String) : Comparable<Namespace?> {
         return "Namespace(namespace='$namespace')"
     }
 }
-
