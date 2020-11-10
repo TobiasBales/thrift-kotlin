@@ -1,6 +1,8 @@
 # Thrift parser and generator in kotlin
 This project aims to build a pure kotlin implementation of thrift including a parser, client generator and server stub generator.
 
+[![Actions Status](https://github.com/TobiasBales/thrift-kotlin/workflows/CI/badge.svg)](https://github.com/TobiasBales/thrift-kotlin/actions)
+
 ## Current status
 This project is currently work in progress.
 
