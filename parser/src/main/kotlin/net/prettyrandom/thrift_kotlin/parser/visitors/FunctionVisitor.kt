@@ -14,5 +14,4 @@ class FunctionVisitor : ThriftBaseVisitor<Function>() {
             parameters = ctx.field().mapNotNull { it.accept(fieldVisitor) }
         )
     }
-
 }
